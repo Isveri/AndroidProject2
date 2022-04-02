@@ -57,18 +57,18 @@ public abstract class PhoneRoomDatabase extends RoomDatabase {
                 }
             });
         }
-        public void onOpen(@NonNull SupportSQLiteDatabase db) {
-            super.onOpen(db);
-            databaseWriteExecutor.execute(() -> {
-                PhoneDao dao = INSTANCE.phoneDao();
-                ArrayList<Phone> phons = new ArrayList<>();
-                phons.add(new Phone(null, "Samsung", "Galaxy M20", "10.0", "....."));
-                phons.add(new Phone(null, "Huawei", "Lite 10", "10.0", "....."));
-                phons.add(new Phone(null, "Apple", "Iphone 13 Pro", "10.0", "....."));
-                for (Phone p : phons) {
-                    dao.insert(p);
-                }
-            });
-        }
+//        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+//            super.onOpen(db);
+//            databaseWriteExecutor.execute(() -> {
+//                PhoneDao dao = INSTANCE.phoneDao();
+//                ArrayList<Phone> phons = new ArrayList<>();
+//                phons.add(new Phone(null, "Samsung", "Galaxy M20", "10.0", "....."));
+//                phons.add(new Phone(null, "Huawei", "Lite 10", "10.0", "....."));
+//                phons.add(new Phone(null, "Apple", "Iphone 13 Pro", "10.0", "....."));
+//                for (Phone p : phons) {
+//                    dao.insert(p);
+//                }
+//            });
+//        }
     };
 }

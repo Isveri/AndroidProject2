@@ -1,11 +1,14 @@
 package com.example.lab2_pi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.Serializable;
 
 public class AddPhoneActivity extends AppCompatActivity {
 
@@ -28,21 +31,26 @@ public class AddPhoneActivity extends AppCompatActivity {
         EditText editProducer = findViewById(R.id.producer);
         EditText editWebsite = findViewById(R.id.web_site);
 
-        producer = editProducer.getText().toString();
-        model = editModel.getText().toString();
-        version = editVersion.getText().toString();
-        website = editWebsite.getText().toString();
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               finish();
+                producer = editProducer.getText().toString();
+                model = editModel.getText().toString();
+                version = editVersion.getText().toString();
+                website = editWebsite.getText().toString();
+                Phone phone = new Phone(null,producer,model,version,website);
+                Intent replyIntent = new Intent();
+                replyIntent.putExtra("addPhone", phone);
+                setResult(RESULT_OK,replyIntent);
+                finish();
             }
         });
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 finish();
             }
         });

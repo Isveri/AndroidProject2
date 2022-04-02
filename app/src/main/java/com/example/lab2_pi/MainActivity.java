@@ -1,5 +1,9 @@
 package com.example.lab2_pi;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,6 +21,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.Serializable;
+
 public class MainActivity extends AppCompatActivity {
 
     private PhoneViewModel mPhoneViewModel;
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         addPhoneBtn = findViewById(R.id.addPhone_btn);
 
+
         RecyclerView recyclerView = findViewById(R.id.phonelist);
         mAdapter = new PhoneListAdapter(this);
         recyclerView.setAdapter(mAdapter);
@@ -39,14 +46,25 @@ public class MainActivity extends AppCompatActivity {
             mAdapter.setPhoneList(phones);
         });
 
+
+
+        ActivityResultLauncher<Intent> mActivityResultLaunch = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),result ->  {
+            if(result.getResultCode() == RESULT_OK){
+                Phone phone = (Phone)result.getData().getSerializableExtra("addPhone");
+                mPhoneViewModel.insert(phone);
+            }
+        });
+
         addPhoneBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intention = new Intent(MainActivity.this,AddPhoneActivity.class);
-                startActivity(intention);
+                Intent intent = new Intent(MainActivity.this,AddPhoneActivity.class);
+                mActivityResultLaunch.launch(intent);
 
             }
         });
+
 
     }
 

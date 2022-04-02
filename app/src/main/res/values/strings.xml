@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Lab2_PI</string>
+    <string name="app_name">Phone DB</string>
+    <string name="producer">Producer</string>
+    <string name="model">Model</string>
+    <string name="version">Android version</string>
+    <string name="web_site">Web site</string>
+    <string name="web_site_btn">WEB SITE</string>
+    <string name="cancel_btn">CANCEL</string>
+    <string name="save">SAVE</string>
 </resources>

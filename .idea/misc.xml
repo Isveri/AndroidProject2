@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/pat20/AndroidStudioProjects/Lab2_PI/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/pat20/AndroidStudioProjects/Lab2_PI/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/pat20/AndroidStudioProjects/Lab2_PI/app/src/main/res/layout/add_phone_activity.xml" value="0.25" />
         <entry key="..\:/Users/pat20/AndroidStudioProjects/Lab2_PI/app/src/main/res/layout/phone_item.xml" value="0.358695652173913" />
         <entry key="..\:/Users/pat20/AndroidStudioProjects/Lab2_PI/app/src/main/res/layout/recycler_view.xml" value="0.358695652173913" />
         <entry key="..\:/Users/pat20/AndroidStudioProjects/Lab2_PI/app/src/main/res/layout/wiersz.xml" value="0.358695652173913" />

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="2">
+    <TableRow android:id="@+id/producer_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etykieta1"
+            android:text="@string/producer">
+        </TextView>
+
+        <EditText
+            android:id="@+id/producer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:hint="@string/producer"
+            android:text="">
+        </EditText>
+    </TableRow>
+    <TableRow android:id="@+id/model_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etykieta2"
+            android:text="@string/model">
+        </TextView>
+
+        <EditText
+            android:id="@+id/model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:hint="@string/model"
+            android:text=""
+            tools:ignore="TouchTargetSizeCheck"></EditText>
+    </TableRow>
+    <TableRow android:id="@+id/version_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etykieta3"
+            android:text="@string/version">
+        </TextView>
+
+        <EditText
+            android:id="@+id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:hint="@string/version"
+            android:text=""
+            tools:ignore="TouchTargetSizeCheck"></EditText>
+    </TableRow>
+    <TableRow android:id="@+id/web_site_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etykieta4"
+            android:text="@string/web_site">
+        </TextView>
+
+        <EditText
+            android:id="@+id/web_site"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:hint="@string/web_site"
+            android:text=""
+            tools:ignore="TouchTargetSizeCheck"></EditText>
+    </TableRow>
+    <TableRow android:id="@+id/btn_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/web_site_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/web_site_btn" />
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_btn" />
+
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save" />
+    </TableRow>
+</TableLayout>

@@ -6,20 +6,28 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
     private PhoneViewModel mPhoneViewModel;
     private PhoneListAdapter mAdapter;
-
+    private FloatingActionButton addPhoneBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        addPhoneBtn = findViewById(R.id.addPhone_btn);
 
         RecyclerView recyclerView = findViewById(R.id.phonelist);
         mAdapter = new PhoneListAdapter(this);
@@ -30,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
         mPhoneViewModel.getAllPhones().observe(this, phones -> {
             mAdapter.setPhoneList(phones);
         });
+
+        addPhoneBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intention = new Intent(MainActivity.this,AddPhoneActivity.class);
+                startActivity(intention);
+
+            }
+        });
+
     }
 
     @Override
@@ -48,4 +66,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

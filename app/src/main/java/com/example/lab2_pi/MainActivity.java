@@ -111,7 +111,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         mSelectorTracker = new SelectionTracker.Builder<>("phone-selection",recyclerView,mPhoneItemKeyProvider,new PhoneItemDetailsLookup(recyclerView),
-                StorageStrategy.createLongStorage()).build();
+                StorageStrategy.createLongStorage()).withSelectionPredicate(new SelectionTracker.SelectionPredicate<Long>() {
+            @Override
+            public boolean canSetStateForKey(@NonNull Long key, boolean nextState) {
+                return true;
+            }
+
+            @Override
+            public boolean canSetStateAtPosition(int position, boolean nextState) {
+                return true;
+            }
+
+            @Override
+            public boolean canSelectMultiple() {
+                return false; // Set to false to allow single selecting
+            }
+        }).build();
         mAdapter.setSelectionTracker(mSelectorTracker);
 
         updateBtn = findViewById(R.id.edit_btn);
@@ -154,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
 //        }else{
 //            mIsMainFabAdd=true;
 //        }
-
         if(mSelectorTracker.hasSelection()){
             updateBtn.setVisibility(View.VISIBLE);
             addPhoneBtn.setImageDrawable(getDrawable(R.drawable.baseline_cancel));
@@ -177,21 +191,11 @@ public class MainActivity extends AppCompatActivity {
             phonePosition=mPhoneItemKeyProvider.getPosition(phoneId);
             ph = phoneList.get(phonePosition);
         }
-//        Button temp = findViewById(R.id.save_btn);
-//        temp.setText(R.string.update);
         Intent intent = new Intent(MainActivity.this, AddPhoneActivity.class);
         intent.putExtra("updPhone", ph);
         mActivityResultLaunch.launch(intent);
-//        mActivityResultLaunch = registerForActivityResult(
-//                new ActivityResultContracts.StartActivityForResult(),result ->  {
-//                    if(result.getResultCode() == RESULT_OK){
-//                        Phone phone = (Phone)result.getData().getSerializableExtra("updatePhone");
-//                        mPhoneViewModel.insert(phone);
-//                    }
-//                });
     }
 
-    /// zamiast dla delete trzeba tutaj zrobic edycje, delete leci jako ItemTouchHelper
     private void deleteSelection(){
         Selection<Long> selection = mSelectorTracker.getSelection();
         int phonePosition = -1;

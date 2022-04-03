@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private PhoneListAdapter mAdapter;
     private FloatingActionButton addPhoneBtn;
 
-    private SelectionTracker<Long> mSelectorTracker;
+    private SelectionTracker mSelectorTracker;
     private FloatingActionButton updateBtn;
     private boolean mIsMainFabAdd = true;
     private PhoneItemKeyProvider mPhoneItemKeyProvider;

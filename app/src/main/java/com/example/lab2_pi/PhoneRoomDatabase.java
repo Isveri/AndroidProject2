@@ -43,14 +43,14 @@ public abstract class PhoneRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(()->{
                 PhoneDao dao = INSTANCE.phoneDao();
                 ArrayList<Phone> phons = new ArrayList<>();
-                phons.add(new Phone(null,"Samsung","Galaxy M51","10.0","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
-                phons.add(new Phone(null,"Samsung","A8","10.0","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
-                phons.add(new Phone(null,"Apple","Iphone 8","10.0","https://www.apple.com/pl/iphone/"));
-                phons.add(new Phone(null,"Apple","Iphone 13","10.0","https://www.apple.com/pl/iphone-13-pro/"));
-                phons.add(new Phone(null,"Samsung","Galaxy S8","10.0","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
-                phons.add(new Phone(null,"Samsung","Galaxy S10","10.0","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
-                phons.add(new Phone(null,"Huawei","Lite","10.0","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
-                phons.add(new Phone(null,"Xiaomi","POCOX3","10.0","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
+                phons.add(new Phone(null,"Samsung","Galaxy M51","10","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
+                phons.add(new Phone(null,"Samsung","A8","10","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
+                phons.add(new Phone(null,"Apple","Iphone 8","10","https://www.apple.com/pl/iphone/"));
+                phons.add(new Phone(null,"Apple","Iphone 13","10","https://www.apple.com/pl/iphone-13-pro/"));
+                phons.add(new Phone(null,"Samsung","Galaxy S8","10","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
+                phons.add(new Phone(null,"Samsung","Galaxy S10","10","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
+                phons.add(new Phone(null,"Huawei","Lite","10","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
+                phons.add(new Phone(null,"Xiaomi","POCOX3","10","https://www.samsung.com/pl/smartphones/galaxy-s22/buy/"));
 
                 for(Phone p : phons){
                     dao.insert(p);

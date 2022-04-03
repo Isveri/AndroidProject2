@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.selection.Selection;
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.selection.StorageStrategy;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean mIsMainFabAdd = true;
     private PhoneItemKeyProvider mPhoneItemKeyProvider;
     ActivityResultLauncher<Intent> mActivityResultLaunch;
+    ItemTouchHelper.SimpleCallback callback;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+         callback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT){
+
+             @Override
+             public int getMovementFlags(RecyclerView recyclerView1, RecyclerView.ViewHolder viewHolder){
+                 if(mIsMainFabAdd){
+                     return 0;
+                 }
+                 return super.getMovementFlags(recyclerView1,viewHolder);
+             }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                deleteSelection();
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         mActivityResultLaunch = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),result ->  {
@@ -76,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     mActivityResultLaunch.launch(intent);
                 }else{
                     updateBtn.setVisibility(View.GONE);
+                    mSelectorTracker.clearSelection();
                     addPhoneBtn.setImageDrawable(getDrawable(R.drawable.baseline_add));
                     mIsMainFabAdd=true;
                 }
@@ -94,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
                 editSelection();
             }
         });
+
+        // zrobic cos z wyswietlaniem zaznaczonego wiersza bo zaznaczenie kolejnego nie usuwa podswietlenia poprzednich.
 
         mSelectorTracker.addObserver(new SelectionTracker.SelectionObserver<Long>() {
             @Override
@@ -114,15 +143,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void mainBtnClicked(){
-        if(mIsMainFabAdd){
-            Intent intent = new Intent(MainActivity.this,AddPhoneActivity.class);
-            mActivityResultLaunch.launch(intent);
-        }else{
-            mSelectorTracker.clearSelection();
-        }
     }
 
     private void updateBtn(){
@@ -170,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
 //                    }
 //                });
     }
+
     /// zamiast dla delete trzeba tutaj zrobic edycje, delete leci jako ItemTouchHelper
     private void deleteSelection(){
         Selection<Long> selection = mSelectorTracker.getSelection();

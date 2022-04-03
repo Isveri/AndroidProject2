@@ -8,8 +8,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="64dp"
-        android:background="@drawable/list_background"
-        app:cardBackgroundColor="#EFE9E9"
         app:cardCornerRadius="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/list_background">
 
             <TextView
                 android:id="@+id/phoneProducerTextView"
@@ -33,6 +32,7 @@
         <LinearLayout
             android:layout_width="411dp"
             android:layout_height="match_parent"
+            android:background="@drawable/list_background"
             android:orientation="horizontal">
 
             <TextView

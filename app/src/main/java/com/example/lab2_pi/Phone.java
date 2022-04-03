@@ -30,13 +30,6 @@ public class Phone implements Serializable {
     @ColumnInfo(name = "site")
     private String site;
 
-//    public Phone(){
-//
-//        site = null;
-//        version = null;
-//        producer = null;
-//        model = null;
-//    }
     public Phone(Long id, @NonNull String producer, @NonNull String model, @NonNull String version, @NonNull String site ){
         this.id = id;
         this.producer = producer;

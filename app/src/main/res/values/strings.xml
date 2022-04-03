@@ -7,4 +7,8 @@
     <string name="web_site_btn">WEB SITE</string>
     <string name="cancel_btn">CANCEL</string>
     <string name="save">SAVE</string>
+    <string name="update">UPDATE</string>
+    <string name="error">Niepoprawne dane</string>
+    <string name="website_error">Adres strony musi zaczynac sie od https://</string>
+
 </resources>

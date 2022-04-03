@@ -34,5 +34,10 @@ public class PhoneRespository {
             mPhoneDao.deletePhone(phone);
         });
     }
+    void updatePhone(Phone phone){
+        PhoneRoomDatabase.databaseWriteExecutor.execute(()->{
+            mPhoneDao.updatePhone(phone);
+        });
+    }
 
 }

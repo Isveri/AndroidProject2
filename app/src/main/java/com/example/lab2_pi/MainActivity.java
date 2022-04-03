@@ -17,13 +17,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton addPhoneBtn;
 
     private SelectionTracker<Long> mSelectorTracker;
-    private FloatingActionButton deleteBtn;
+    private FloatingActionButton updateBtn;
     private boolean mIsMainFabAdd = true;
     private PhoneItemKeyProvider mPhoneItemKeyProvider;
     ActivityResultLauncher<Intent> mActivityResultLaunch;
@@ -78,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 //                    temp.setText(R.string.save);
                     mActivityResultLaunch.launch(intent);
                 }else{
-                    deleteBtn.setVisibility(View.GONE);
+                    updateBtn.setVisibility(View.GONE);
                     addPhoneBtn.setImageDrawable(getDrawable(R.drawable.baseline_add));
                     mIsMainFabAdd=true;
                 }
@@ -90,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 StorageStrategy.createLongStorage()).build();
         mAdapter.setSelectionTracker(mSelectorTracker);
 
-        deleteBtn = findViewById(R.id.delete_btn);
-        deleteBtn.setOnClickListener(new OnClickListener() {
+        updateBtn = findViewById(R.id.edit_btn);
+        updateBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 editSelection();
@@ -129,22 +126,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateBtn(){
-        if(mSelectorTracker.hasSelection()){
-            editSelection();
-            mIsMainFabAdd=false;
-        }else{
-            mIsMainFabAdd=true;
-        }
+        // wersja dla klikniecia na liscie bez przycisku. Dol koment wtedy
+
 //        if(mSelectorTracker.hasSelection()){
-//            deleteBtn.setVisibility(View.VISIBLE);
-//            addPhoneBtn.setImageDrawable(getDrawable(R.drawable.baseline_cancel));
+//            editSelection();
 //            mIsMainFabAdd=false;
-//        }
-//        else{
-//            deleteBtn.setVisibility(View.GONE);
-//            addPhoneBtn.setImageDrawable(getDrawable(R.drawable.baseline_add));
+//        }else{
 //            mIsMainFabAdd=true;
 //        }
+
+        if(mSelectorTracker.hasSelection()){
+            updateBtn.setVisibility(View.VISIBLE);
+            addPhoneBtn.setImageDrawable(getDrawable(R.drawable.baseline_cancel));
+            mIsMainFabAdd=false;
+        }
+        else{
+            updateBtn.setVisibility(View.GONE);
+            addPhoneBtn.setImageDrawable(getDrawable(R.drawable.baseline_add));
+            mIsMainFabAdd=true;
+        }
     }
 
 

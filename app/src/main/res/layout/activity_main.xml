@@ -26,7 +26,7 @@
         android:contentDescription="@string/app_name" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/delete_btn"
+        android:id="@+id/edit_btn"
         android:layout_width="61dp"
         android:layout_height="56dp"
         android:visibility="gone"
@@ -37,5 +37,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

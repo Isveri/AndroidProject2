@@ -7,6 +7,9 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+/**
+ * Typowa klasa potrzebna do przetrzymywania danych w bazie danych
+ */
 @Entity(tableName = "phones")
 public class Phone implements Serializable {
 

@@ -14,6 +14,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 
+/**
+ * Widok dodawania nowego telefonu
+ */
 public class AddPhoneActivity extends AppCompatActivity {
 
     private String producer;
@@ -23,6 +26,10 @@ public class AddPhoneActivity extends AppCompatActivity {
     private boolean isUpdate = false;
     private Long updtId=null;
 
+    /**
+     * przypisanie przyciskow, listenerów i ogólne przygotowanie widoku
+     * do wyswietlenia
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +43,12 @@ public class AddPhoneActivity extends AppCompatActivity {
         EditText editVersion = findViewById(R.id.version);
         EditText editProducer = findViewById(R.id.producer);
         EditText editWebsite = findViewById(R.id.web_site);
+
+        /**
+         * Ten kawałek sprawdza czy widok ma działać jako update czy jako dodawania
+         * w przypadku dodawania phone bedzie nullem i pola tekstowe beda puste
+         * w przeciwnym wypadku pola tekstowe zostana wypełnione danymi aktualizowanego telefonu
+         */
         Phone phone=null;
         try {
             Bundle ext = getIntent().getExtras();
@@ -57,9 +70,13 @@ public class AddPhoneActivity extends AppCompatActivity {
             saveBtn.setText(R.string.save);
         }
 
-        ///// update dziala jako ale wyswietla sie 2x to samo okno mozliwe ze rzycisk do update lepszy bylby
-        /// zostalo zrobic otworzenie strony WWW od tego momentu do tego walidacja i mozliwosc usuwania za pomoca tego przesuwania
-        /// Troche popracować nad tym intent sprawdzic czy z zprzyciskiem to samo bedzie bo mozliwe ze wylapuje kilka klilniec przy przytrzymaniu
+
+        /**
+         * Listener przycisku save/update w zaleznosci od góry.
+         * W momencie kliknięcia przycisku pobierane sa dane z pól a następnie walidowane
+         * potem w zaleznosci czy jest widok ma dzialac jako update czy dodawanie tworzony jest obiekt
+         * do przesłania, dla edycji result to 3 dla dodawania jest to RESULT_OK
+         */
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +108,9 @@ public class AddPhoneActivity extends AppCompatActivity {
         });
 
 
-
+        /**
+         * Konczenie aktywnosci przy wcisnieciu przycisku Cancel
+         */
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +118,9 @@ public class AddPhoneActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Przekierowanie do strony internetowej wpsianej w pole website po wciśnięciu przycisku website
+         */
         websiteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,6 +133,10 @@ public class AddPhoneActivity extends AppCompatActivity {
                 }
             }
         });
+
+        /**
+         * Listenery do sprawdzania czy pole nie jest puste zmianie tekstu w polu
+         */
 
         editProducer.addTextChangedListener(new TextWatcher() {
 

@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Klasa odpowaidająca za przypisywanie id obiektu Phone do pozycji na wyświetlanej liście
+ */
 public class PhoneItemKeyProvider extends ItemKeyProvider {
 
     private Map<Long, Integer> mKeyToPosition;

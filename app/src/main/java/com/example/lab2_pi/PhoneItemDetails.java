@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.selection.ItemDetailsLookup;
 
+/**
+ * Klasa odpowiadająca za wyszukiwanie danych o id i pozycji danego telefonu
+ */
 public class PhoneItemDetails extends ItemDetailsLookup.ItemDetails<Long> {
     private int position;
     private long id;

@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Klasa tworząca bazę danych i obsługująca wszystkie jej funkcjonalności.
+ */
 @Database(entities = {Phone.class}, version = 1 ,exportSchema = false)
 public abstract class PhoneRoomDatabase extends RoomDatabase {
     public abstract PhoneDao phoneDao();
@@ -34,7 +37,13 @@ public abstract class PhoneRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-
+    /**
+     * Utworzenie przykładowych danych w momencie utworzenia bazy
+     * Metoda wywołuje się tylko raz przy tworzeniu bazy danych
+     * w momencie w którym usunie się wszystkie wartości nie zostaną one załadowane ponownie,
+     * będzie trzeba ręcznie dodawać wartości lub usunąc bazę z plików telefonu i uruchomić
+     * program od nowa
+     */
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback(){
         @Override

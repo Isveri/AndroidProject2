@@ -13,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Klasa odpowiadająca za wyświetlanie wszystkich telefonów pojedynczo, 1 telefon 1 wiersz.
+ * Działa to na zasadzie automatycznego wklejania tego samego widoku jeden pod drugim, (patrz phone_item.xml)
+ */
 public class PhoneListAdapter  extends RecyclerView.Adapter<PhoneListAdapter.PhoneViewHolder> {
     private LayoutInflater mLayoutInflater;
     public List<Phone> mPhoneList;

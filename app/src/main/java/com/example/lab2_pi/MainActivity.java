@@ -24,6 +24,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+/**
+ * Główna klasa wyświetlająca liste telefonów
+ */
 public class MainActivity extends AppCompatActivity {
 
     private PhoneViewModel mPhoneViewModel;
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> mActivityResultLaunch;
     ItemTouchHelper.SimpleCallback callback;
 
+    /**
+     * Ustawienie wsdzystkich niezbędych pól i przycisków
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        /**
+         * Kawałek do obsługi przesuwania wybranych wierszy po wczesniejszym ich zaznaczeniu
+         */
          callback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT){
 
              @Override
@@ -82,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
+        /**
+         * Stworzenie aktywności oczekującej na konkretny rezultat, na podstawie przekazanego codu z klasy AddPhone
+         * wiemy czy ma nastąpić edycja czy dodanie telefonu do bazy danych
+         */
         mActivityResultLaunch = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),result ->  {
             if(result.getResultCode() == RESULT_OK){
@@ -93,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Listener do przycisku dodawania, tworzona jest nowa intencja na podstawie klasy AddPhoneActivity
+         * mIsMainFabAdd sprawdza czy ma być wyświetlany przycisk edycji czy dodawania.
+         */
         addPhoneBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Utworzenie selectorTrackera odpowiadającego za sledzenie zaznaczeń
+         */
 
         mSelectorTracker = new SelectionTracker.Builder<>("phone-selection",recyclerView,mPhoneItemKeyProvider,new PhoneItemDetailsLookup(recyclerView),
                 StorageStrategy.createLongStorage()).withSelectionPredicate(new SelectionTracker.SelectionPredicate<Long>() {
@@ -138,7 +158,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // zrobic cos z wyswietlaniem zaznaczonego wiersza bo zaznaczenie kolejnego nie usuwa podswietlenia poprzednich.
+        /** Dodanie listenera sprawdzającego zaznaczenie wiersza i
+         * nadpisanie metod określających co ma sie dziać w momencie zaznaczenia
+         */
 
         mSelectorTracker.addObserver(new SelectionTracker.SelectionObserver<Long>() {
             @Override
@@ -161,6 +183,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Metoda aktualizacji zaznaczonego rekordu, zrobione na zasadzie zaznaczenia wtedy pojawia sie przycisk do edycji
+     * mozna zrobic bezposrednio po wcisnieciu wiersza
+     */
     private void updateBtn(){
         // wersja dla klikniecia na liscie bez przycisku. Dol koment wtedy
 
@@ -183,6 +209,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Edycja wybranego telefonu. Sprawdzana jest pozycja zaznaczonego telefonu a nastepnie na jej podstawie
+     * przekazywany jest odpowiedni obiekt Phone do klasy AddPhoneActivity w celu zmiany jego wartości.
+     */
     private void editSelection(){
         Selection<Long> selection = mSelectorTracker.getSelection();
         int phonePosition = -1;
@@ -197,6 +227,9 @@ public class MainActivity extends AppCompatActivity {
         mActivityResultLaunch.launch(intent);
     }
 
+    /**
+     * Metoda odpowiadająca za usuwanie zaznaczonego i przeciągnietego wiersza tj telefonu
+     */
     private void deleteSelection(){
         Selection<Long> selection = mSelectorTracker.getSelection();
         int phonePosition = -1;
@@ -218,6 +251,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     *Kawałek do obłsugi menu pod "..." w prawym górnym rogu, po wcisnięciu opcji z rozwijanego menu
+     * baza danych zostanie wyczyszczona
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main,menu);
